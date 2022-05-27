@@ -7,6 +7,8 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 
+import java.util.List;
+
 public class HbmRun {
     public static void main(String[] args) {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -29,9 +31,11 @@ public class HbmRun {
 
             Query findByName = session.createQuery("from Candidate s where s.name = :fName");
             findByName.setParameter("fName", "Nikita");
-            System.out.println(findByName.uniqueResult());
+            for (Object candidate : findByName.list()) {
+                System.out.println(candidate);
+            }
 
-            session.createQuery("update Candidate s set s.experience = :newExperience,"
+           session.createQuery("update Candidate s set s.experience = :newExperience,"
                             + " s.salary = :newSalary where s.id = :fId")
                     .setParameter("newExperience", 0.8)
                     .setParameter("newSalary", 500)
