@@ -23,16 +23,13 @@ public class HbmRun {
             session.save(two);
             session.save(three);
 
-
             Query findById = session.createQuery("from Candidate s where s.id = :fId");
             findById.setParameter("fId", 1);
             System.out.println(findById.uniqueResult());
 
-
             Query findByName = session.createQuery("from Candidate s where s.name = :fName");
             findByName.setParameter("fName", "Nikita");
             System.out.println(findByName.uniqueResult());
-
 
             session.createQuery("update Candidate s set s.experience = :newExperience,"
                             + " s.salary = :newSalary where s.id = :fId")
@@ -40,7 +37,6 @@ public class HbmRun {
                     .setParameter("newSalary", 500)
                     .setParameter("fId", 3)
                     .executeUpdate();
-
 
             session.createQuery("delete from Candidate where id = :fId")
                     .setParameter("fId", 2)

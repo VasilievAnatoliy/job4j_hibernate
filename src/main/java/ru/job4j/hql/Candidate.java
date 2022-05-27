@@ -73,6 +73,5 @@ public class Candidate {
     public String toString() {
         return String.format("Candidate: id=%s, name=%s, experience=%s, salary=%s",
                 id, name, experience, salary);
-
     }
 }
