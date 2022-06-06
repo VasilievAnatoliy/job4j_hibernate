@@ -22,5 +22,7 @@
         <mapping class="ru.job4j.hql.Candidate" />
         <mapping class="ru.job4j.many.Brand" />
         <mapping class="ru.job4j.many.Model" />
+        <mapping class="ru.job4j.manytomany.Author" />
+        <mapping class="ru.job4j.manytomany.Book" />
     </session-factory>
 </hibernate-configuration>
