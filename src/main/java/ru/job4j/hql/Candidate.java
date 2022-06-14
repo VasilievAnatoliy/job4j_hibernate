@@ -12,11 +12,15 @@ public class Candidate {
    private double experience;
    private int salary;
 
-    public static Candidate of(String name, double experience, int salary) {
+   @OneToOne(fetch = FetchType.LAZY)
+   private DbVacancies dbVacancies;
+
+    public static Candidate of(String name, double experience, int salary, DbVacancies dbVacancies) {
         Candidate candidate = new Candidate();
         candidate.name = name;
         candidate.experience = experience;
         candidate.salary = salary;
+        candidate.dbVacancies = dbVacancies;
         return candidate;
     }
 
@@ -61,17 +65,17 @@ public class Candidate {
             return false;
         }
         Candidate candidate = (Candidate) o;
-        return getId() == candidate.getId();
+        return id == candidate.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
-        return String.format("Candidate: id=%s, name=%s, experience=%s, salary=%s",
-                id, name, experience, salary);
+        return String.format("Candidate: id=%s, name=%s, experience=%s, salary=%s, dbVacancies=%s",
+                id, name, experience, salary, dbVacancies);
     }
 }
